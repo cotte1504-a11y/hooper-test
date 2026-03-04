@@ -659,6 +659,140 @@
   .empty-state .icon { font-size: 40px; margin-bottom: 16px; }
   .empty-state p { font-size: 14px; line-height: 1.6; }
 
+  /* ALREADY DONE SCREEN */
+  .already-done {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .already-icon {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: rgba(0,230,118,0.12);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 24px;
+  }
+  .already-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 0.03em;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+  .already-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 320px;
+    margin: 0 auto 32px;
+  }
+  .already-recap {
+    background: var(--dark3);
+    border: 1px solid var(--dark4);
+    border-radius: 16px;
+    padding: 20px;
+    width: 100%;
+    max-width: 360px;
+    margin-bottom: 24px;
+  }
+  .already-recap h4 {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .already-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 52px;
+    line-height: 1;
+  }
+  .already-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* RPE SCREEN */
+  .rpe-wrap {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 0 40px;
+  }
+  .rpe-section-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    margin: 24px 0 12px;
+  }
+  .rpe-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+  .rpe-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .rpe-btn {
+    aspect-ratio: 1;
+    border: 1.5px solid var(--dark4);
+    border-radius: 10px;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    padding: 4px;
+  }
+  .rpe-btn .rpe-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .rpe-btn .rpe-lbl {
+    font-size: 8px;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.2;
+    margin-top: 2px;
+  }
+  .rpe-btn:hover { transform: scale(1.05); border-color: var(--accent); }
+  .rpe-btn.sel-1, .rpe-btn.sel-2 { background: rgba(0,230,118,0.15); border-color: var(--green); }
+  .rpe-btn.sel-1 .rpe-num, .rpe-btn.sel-2 .rpe-num { color: var(--green); }
+  .rpe-btn.sel-3, .rpe-btn.sel-4, .rpe-btn.sel-5 { background: rgba(255,214,0,0.15); border-color: var(--yellow); }
+  .rpe-btn.sel-3 .rpe-num, .rpe-btn.sel-4 .rpe-num, .rpe-btn.sel-5 .rpe-num { color: var(--yellow); }
+  .rpe-btn.sel-6, .rpe-btn.sel-7, .rpe-btn.sel-8 { background: rgba(255,109,0,0.15); border-color: var(--orange); }
+  .rpe-btn.sel-6 .rpe-num, .rpe-btn.sel-7 .rpe-num, .rpe-btn.sel-8 .rpe-num { color: var(--orange); }
+  .rpe-btn.sel-9, .rpe-btn.sel-10 { background: rgba(255,23,68,0.15); border-color: var(--red); }
+  .rpe-btn.sel-9 .rpe-num, .rpe-btn.sel-10 .rpe-num { color: var(--red); }
+
+  .rpe-charge-box {
+    background: var(--dark3);
+    border: 1px solid var(--dark4);
+    border-radius: 16px;
+    padding: 20px;
+    margin: 16px 0;
+    display: none;
+  }
+  .rpe-charge-box.visible { display: block; }
+  .rpe-charge-box h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px; }
+  .rpe-charge-value { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; }
+  .rpe-charge-formula { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
   /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -720,8 +854,11 @@
       </select>
     </div>
 
-    <button class="btn-primary" onclick="handleLogin()">
-      <span data-t="btnStart">Commencer le test</span> →
+    <button class="btn-primary" onclick="handleLogin('hooper')" style="margin-bottom:10px;">
+      <span>🌅 Test du Matin (Hooper)</span> →
+    </button>
+    <button class="btn-primary" onclick="handleLogin('rpe')" style="background:var(--dark3); border:1px solid var(--dark4); color:var(--text);">
+      <span>💪 RPE — Après Séance</span> →
     </button>
   </div>
 </div>
@@ -874,7 +1011,87 @@
   </div>
 </div>
 
-<!-- ── SCREEN: COACH ── -->
+<!-- ── SCREEN: ALREADY DONE ── -->
+<div id="already-done" class="screen">
+  <div class="already-done">
+    <div class="already-icon">✅</div>
+    <h1 class="already-title">DÉJÀ RÉPONDU !</h1>
+    <p class="already-sub">Tu as déjà complété le test Hooper ce matin. Une seule réponse par jour est autorisée.</p>
+    <div class="already-recap" id="alreadyRecap">
+      <h4>TON TEST DU JOUR</h4>
+      <div class="already-score" id="alreadyScore" style="color:var(--green)">—</div>
+      <div class="already-label" id="alreadyLabel">—</div>
+    </div>
+    <button class="btn-secondary" onclick="goBack()">← Retour à l'accueil</button>
+  </div>
+</div>
+
+<!-- ── SCREEN: RPE ── -->
+<div id="rpe-screen" class="screen">
+  <div class="form-header">
+    <div class="form-header-left">
+      <h2>RPE — APRÈS SÉANCE</h2>
+      <p>Charge d'entraînement</p>
+    </div>
+    <div class="player-chip">
+      <div class="player-avatar" id="rpeAvatarInitials">AB</div>
+      <span id="rpePlayerName">Joueur</span>
+    </div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+
+  <div class="form-body">
+    <div class="rpe-wrap">
+
+      <div class="date-display">
+        <span class="icon">⚽</span>
+        <div>
+          <div class="date-text">Séance du</div>
+          <div class="date-value" id="rpeTodayDate">—</div>
+        </div>
+        <div style="margin-left:auto; text-align:right;">
+          <div class="date-text">Durée</div>
+          <div class="date-value" style="color:var(--accent)">90 min</div>
+        </div>
+      </div>
+
+      <div class="question-card" id="rpe-card" style="margin-top:16px">
+        <div class="q-header">
+          <div class="q-icon orange">💪</div>
+          <div class="q-text">
+            <h3>Perception de l'effort (RPE)</h3>
+            <p>Comment as-tu vécu l'intensité de la séance ?</p>
+          </div>
+          <div class="q-check" id="rpe-check">✓</div>
+        </div>
+
+        <p class="rpe-section-title">1 — Très facile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 — Maximum absolu</p>
+
+        <div class="rpe-grid" id="rpeButtons1"></div>
+        <div class="rpe-grid-2" id="rpeButtons2"></div>
+
+        <div class="score-preview" id="rpe-preview" style="margin-top:8px">
+          <div class="score-dot"></div><span></span>
+        </div>
+      </div>
+
+      <!-- Charge calculée -->
+      <div class="rpe-charge-box" id="rpeChargeBox">
+        <h4>CHARGE D'ENTRAÎNEMENT CALCULÉE</h4>
+        <div class="rpe-charge-value" id="rpeChargeValue" style="color:var(--accent)">—</div>
+        <div class="rpe-charge-formula" id="rpeChargeFormula">RPE × 90 min = — UA</div>
+        <div style="height:6px; background:var(--dark4); border-radius:3px; margin-top:14px; overflow:hidden;">
+          <div id="rpeChargeBar" style="height:100%; border-radius:3px; background:var(--accent); width:0%; transition:width 0.8s cubic-bezier(0.4,0,0.2,1);"></div>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="rpeSubmitBtn" onclick="submitRPE()" disabled style="opacity:0.4; cursor:not-allowed; margin-top:8px;">
+        Envoyer la charge ↗
+      </button>
+
+    </div>
+  </div>
+</div>
 <div id="coach" class="screen">
   <div class="coach-header">
     <div>
@@ -1016,7 +1233,17 @@ function setLang(l) {
 // ── STATE ─────────────────────────────────────────────────────────────────────
 let currentPlayer = '';
 let answers = [null, null, null, null];
-let responses = JSON.parse(localStorage.getItem('hooперResponses') || '{}');
+let rpeAnswer = null;
+let responses = {};
+try { responses = JSON.parse(localStorage.getItem('hooперResponses') || '{}'); } catch(e) { responses = {}; }
+
+const DURATION = 90; // minutes fixes
+const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx7VVNu-8eU_UqCdT0xKS80_YwOupdGvnh-qXngEzegp0fcp5pmlWW5W40Kg93W438/exec';
+
+const rpeLabels = {
+  1:'Repos', 2:'Très facile', 3:'Facile', 4:'Modéré', 5:'Un peu dur',
+  6:'Dur', 7:'Très dur', 8:'Très très dur', 9:'Extrêmement dur', 10:'Maximum'
+};
 
 const scoreColors = {
   1: 'var(--green)', 2: 'var(--green)', 3: 'var(--yellow)', 4: 'var(--yellow)',
@@ -1026,14 +1253,32 @@ const scoreColors = {
 // ── INIT ──────────────────────────────────────────────────────────────────────
 function init() {
   buildScales();
+  buildRPEButtons();
   setTodayDate();
 }
 
 function setTodayDate() {
   const now = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  document.getElementById('todayDate').textContent = now.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-GB', options);
-  document.getElementById('coachDate').textContent = now.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-GB', options);
+  const dateStr = now.toLocaleDateString(lang === 'fr' ? 'fr-FR' : 'en-GB', options);
+  document.getElementById('todayDate').textContent = dateStr;
+  document.getElementById('coachDate').textContent = dateStr;
+  document.getElementById('rpeTodayDate').textContent = dateStr;
+}
+
+function buildRPEButtons() {
+  const wrap1 = document.getElementById('rpeButtons1');
+  const wrap2 = document.getElementById('rpeButtons2');
+  wrap1.innerHTML = ''; wrap2.innerHTML = '';
+  for (let v = 1; v <= 10; v++) {
+    const btn = document.createElement('button');
+    btn.className = 'rpe-btn';
+    btn.id = `rpe-btn-${v}`;
+    btn.innerHTML = `<span class="rpe-num">${v}</span><span class="rpe-lbl">${rpeLabels[v]}</span>`;
+    btn.onclick = () => selectRPE(v);
+    if (v <= 5) wrap1.appendChild(btn);
+    else wrap2.appendChild(btn);
+  }
 }
 
 function buildScales() {
@@ -1050,8 +1295,8 @@ function buildScales() {
   }
 }
 
-// ── LOGIN ─────────────────────────────────────────────────────────────────────
-function handleLogin() {
+
+function handleLogin(mode) {
   const sel = document.getElementById('playerSelect');
   const val = sel.value;
   if (!val) return;
@@ -1063,18 +1308,64 @@ function handleLogin() {
   }
 
   currentPlayer = val;
-  answers = [null, null, null, null];
-  document.getElementById('playerNameChip').textContent = val.split(' ')[0];
+  const today = new Date().toISOString().split('T')[0];
   const initials = val.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
-  document.getElementById('avatarInitials').textContent = initials;
-  setTodayDate();
-  buildScales();
-  updateProgress();
-  document.getElementById('hooperPreview').classList.remove('visible');
-  document.getElementById('submitBtn').disabled = true;
-  document.getElementById('submitBtn').style.opacity = '0.4';
-  document.getElementById('submitBtn').style.cursor = 'not-allowed';
-  showScreen('form-screen');
+
+  if (mode === 'hooper') {
+    // Vérifier si déjà répondu aujourd'hui
+    if (responses[today] && responses[today][val] && responses[today][val].hooper_done) {
+      const entry = responses[today][val];
+      const total = entry.total;
+      let color, label;
+      if (total <= 10) { color = 'var(--green)'; label = '🟢 Très Frais'; }
+      else if (total <= 14) { color = 'var(--yellow)'; label = '🟡 Frais'; }
+      else if (total <= 18) { color = 'var(--orange)'; label = '🟠 Fatigué'; }
+      else { color = 'var(--red)'; label = '🔴 Très Fatigué'; }
+      document.getElementById('alreadyScore').textContent = `${total}/28`;
+      document.getElementById('alreadyScore').style.color = color;
+      document.getElementById('alreadyLabel').textContent = label;
+      showScreen('already-done');
+      return;
+    }
+    // Nouveau test Hooper
+    answers = [null, null, null, null];
+    document.getElementById('playerNameChip').textContent = val.split(' ')[0];
+    document.getElementById('avatarInitials').textContent = initials;
+    setTodayDate();
+    buildScales();
+    updateProgress();
+    document.getElementById('hooperPreview').classList.remove('visible');
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('submitBtn').style.opacity = '0.4';
+    document.getElementById('submitBtn').style.cursor = 'not-allowed';
+    showScreen('form-screen');
+
+  } else if (mode === 'rpe') {
+    // Vérifier si déjà répondu RPE aujourd'hui
+    if (responses[today] && responses[today][val] && responses[today][val].rpe_done) {
+      const entry = responses[today][val];
+      document.getElementById('alreadyScore').textContent = `${entry.rpe}/10`;
+      document.getElementById('alreadyScore').style.color = 'var(--accent)';
+      document.getElementById('alreadyLabel').textContent = `Charge : ${entry.charge} UA`;
+      document.getElementById('alreadyRecap').querySelector('h4').textContent = 'TON RPE DU JOUR';
+      showScreen('already-done');
+      return;
+    }
+    // Nouveau RPE
+    rpeAnswer = null;
+    buildRPEButtons();
+    document.getElementById('rpePlayerName').textContent = val.split(' ')[0];
+    document.getElementById('rpeAvatarInitials').textContent = initials;
+    document.getElementById('rpeSubmitBtn').disabled = true;
+    document.getElementById('rpeSubmitBtn').style.opacity = '0.4';
+    document.getElementById('rpeSubmitBtn').style.cursor = 'not-allowed';
+    document.getElementById('rpeChargeBox').classList.remove('visible');
+    document.getElementById('rpe-preview').classList.remove('visible');
+    document.getElementById('rpe-card').classList.remove('answered');
+    document.getElementById('rpe-check').style.background = '';
+    setTodayDate();
+    showScreen('rpe-screen');
+  }
 }
 
 // ── SCORE SELECTION ───────────────────────────────────────────────────────────
@@ -1139,13 +1430,14 @@ function updateHooперPreview() {
   barFill.style.background = color;
 }
 
-// ── SUBMIT ────────────────────────────────────────────────────────────────────
+// ── SUBMIT HOOPER ─────────────────────────────────────────────────────────────
 function submitForm() {
   if (answers.includes(null)) return;
   const total = answers.reduce((s, v) => s + v, 0);
   const today = new Date().toISOString().split('T')[0];
 
   const payload = {
+    type: 'hooper',
     player: currentPlayer,
     date: today,
     sleep: answers[0],
@@ -1153,34 +1445,27 @@ function submitForm() {
     stress: answers[2],
     pain: answers[3],
     total: total,
+    hooper_done: true,
     timestamp: new Date().toISOString()
   };
 
-  // ── Envoi vers Google Sheets ──────────────────────────────────────────────
-  const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx7VVNu-8eU_UqCdT0xKS80_YwOupdGvnh-qXngEzegp0fcp5pmlWW5W40Kg93W438/exec';
-
-  // Affiche l'écran de résultat immédiatement (UX fluide)
-  // L'envoi se fait en arrière-plan
   fetch(WEBHOOK_URL, {
-    method: 'POST',
-    mode: 'no-cors',
+    method: 'POST', mode: 'no-cors',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload)
-  }).catch(err => console.log('Envoi Google Sheets:', err));
+  }).catch(err => console.log('Envoi Hooper:', err));
 
-  // Sauvegarde locale pour la vue coach
   if (!responses[today]) responses[today] = {};
-  responses[today][currentPlayer] = payload;
+  if (!responses[today][currentPlayer]) responses[today][currentPlayer] = {};
+  Object.assign(responses[today][currentPlayer], payload);
   try { localStorage.setItem('hooперResponses', JSON.stringify(responses)); } catch(e) {}
 
-  // Result screen
   let color, status;
   if (total <= 10) { color = 'var(--green)'; status = i18n[lang].statusVeryFresh; }
   else if (total <= 14) { color = 'var(--yellow)'; status = i18n[lang].statusFresh; }
   else if (total <= 18) { color = 'var(--orange)'; status = i18n[lang].statusTired; }
   else { color = 'var(--red)'; status = i18n[lang].statusVeryTired; }
 
-  document.getElementById('resultIcon').style.background = color.replace('var(', '').replace(')', '');
   document.getElementById('resultIcon').style.background = `rgba(${colorToRgb(color)}, 0.15)`;
   document.getElementById('resultTitle').textContent = i18n[lang].resultTitle;
   document.getElementById('resultSub').textContent = i18n[lang].resultSub;
@@ -1190,7 +1475,79 @@ function submitForm() {
   document.getElementById('finalStatus').style.color = color;
   document.getElementById('finalSleep').textContent = `${answers[0]}/7`;
   document.getElementById('finalFatigue').textContent = `${answers[1]}/7`;
+  showScreen('result');
+}
 
+// ── RPE SELECTION ─────────────────────────────────────────────────────────────
+function selectRPE(val) {
+  rpeAnswer = val;
+  for (let v = 1; v <= 10; v++) {
+    const btn = document.getElementById(`rpe-btn-${v}`);
+    btn.className = 'rpe-btn';
+    if (v === val) btn.classList.add(`sel-${v}`);
+  }
+  document.getElementById('rpe-card').classList.add('answered');
+  document.getElementById('rpe-check').style.background = 'var(--green)';
+  document.getElementById('rpe-check').style.color = 'var(--dark)';
+
+  const preview = document.getElementById('rpe-preview');
+  const dot = preview.querySelector('.score-dot');
+  const colors = {1:'var(--green)',2:'var(--green)',3:'var(--yellow)',4:'var(--yellow)',5:'var(--yellow)',
+                  6:'var(--orange)',7:'var(--orange)',8:'var(--orange)',9:'var(--red)',10:'var(--red)'};
+  dot.style.background = colors[val];
+  preview.querySelector('span').textContent = `${val}/10 — ${rpeLabels[val]}`;
+  preview.classList.add('visible');
+
+  const charge = val * DURATION;
+  document.getElementById('rpeChargeBox').classList.add('visible');
+  document.getElementById('rpeChargeValue').textContent = `${charge} UA`;
+  document.getElementById('rpeChargeFormula').textContent = `RPE ${val} × ${DURATION} min = ${charge} Unités Arbitraires`;
+  document.getElementById('rpeChargeBar').style.width = `${(charge / 1000) * 100}%`;
+
+  const btn = document.getElementById('rpeSubmitBtn');
+  btn.disabled = false;
+  btn.style.opacity = '1';
+  btn.style.cursor = 'pointer';
+}
+
+// ── SUBMIT RPE ────────────────────────────────────────────────────────────────
+function submitRPE() {
+  if (!rpeAnswer) return;
+  const charge = rpeAnswer * DURATION;
+  const today = new Date().toISOString().split('T')[0];
+
+  const payload = {
+    type: 'rpe',
+    player: currentPlayer,
+    date: today,
+    rpe: rpeAnswer,
+    duration: DURATION,
+    charge: charge,
+    rpe_done: true,
+    timestamp: new Date().toISOString()
+  };
+
+  fetch(WEBHOOK_URL, {
+    method: 'POST', mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(err => console.log('Envoi RPE:', err));
+
+  if (!responses[today]) responses[today] = {};
+  if (!responses[today][currentPlayer]) responses[today][currentPlayer] = {};
+  Object.assign(responses[today][currentPlayer], payload);
+  try { localStorage.setItem('hooперResponses', JSON.stringify(responses)); } catch(e) {}
+
+  // Réutilise l'écran résultat
+  document.getElementById('resultIcon').style.background = 'rgba(79,195,247,0.15)';
+  document.getElementById('resultTitle').textContent = 'ENVOYÉ !';
+  document.getElementById('resultSub').textContent = `Charge de ${charge} UA enregistrée. Récupère bien !`;
+  document.getElementById('finalScore').textContent = `${charge} UA`;
+  document.getElementById('finalScore').style.color = 'var(--accent)';
+  document.getElementById('finalStatus').textContent = `RPE ${rpeAnswer}/10`;
+  document.getElementById('finalStatus').style.color = 'var(--accent)';
+  document.getElementById('finalSleep').textContent = `${rpeAnswer}/10`;
+  document.getElementById('finalFatigue').textContent = `${DURATION} min`;
   showScreen('result');
 }
 
