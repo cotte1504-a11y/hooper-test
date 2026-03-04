@@ -1145,8 +1145,7 @@ function submitForm() {
   const total = answers.reduce((s, v) => s + v, 0);
   const today = new Date().toISOString().split('T')[0];
 
-  if (!responses[today]) responses[today] = {};
-  responses[today][currentPlayer] = {
+  const payload = {
     player: currentPlayer,
     date: today,
     sleep: answers[0],
@@ -1156,7 +1155,23 @@ function submitForm() {
     total: total,
     timestamp: new Date().toISOString()
   };
-  localStorage.setItem('hooперResponses', JSON.stringify(responses));
+
+  // ── Envoi vers Google Sheets ──────────────────────────────────────────────
+  const WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx7VVNu-8eU_UqCdT0xKS80_YwOupdGvnh-qXngEzegp0fcp5pmlWW5W40Kg93W438/exec';
+
+  // Affiche l'écran de résultat immédiatement (UX fluide)
+  // L'envoi se fait en arrière-plan
+  fetch(WEBHOOK_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  }).catch(err => console.log('Envoi Google Sheets:', err));
+
+  // Sauvegarde locale pour la vue coach
+  if (!responses[today]) responses[today] = {};
+  responses[today][currentPlayer] = payload;
+  try { localStorage.setItem('hooперResponses', JSON.stringify(responses)); } catch(e) {}
 
   // Result screen
   let color, status;
