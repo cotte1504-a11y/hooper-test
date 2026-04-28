@@ -19,9 +19,9 @@
     --text-muted: #8B95A8;
     --accent: #4FC3F7;
   }
- 
+
   * { margin: 0; padding: 0; box-sizing: border-box; }
- 
+
   body {
     font-family: 'DM Sans', sans-serif;
     background: var(--dark);
@@ -29,7 +29,7 @@
     min-height: 100vh;
     overflow-x: hidden;
   }
- 
+
   /* LANGUAGE TOGGLE */
   .lang-toggle {
     position: fixed;
@@ -60,7 +60,7 @@
     background: var(--accent);
     color: var(--dark);
   }
- 
+
   /* GRID BACKGROUND */
   body::before {
     content: '';
@@ -73,24 +73,24 @@
     pointer-events: none;
     z-index: 0;
   }
- 
+
   /* SCREENS */
   .screen { display: none; min-height: 100vh; position: relative; z-index: 1; }
   .screen.active { display: flex; flex-direction: column; }
- 
+
   /* ── LOGIN SCREEN ── */
   #login {
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
   }
- 
+
   .login-wrap {
     width: 100%;
     max-width: 420px;
     animation: fadeUp 0.6s ease both;
   }
- 
+
   .badge {
     display: inline-flex;
     align-items: center;
@@ -112,7 +112,7 @@
     border-radius: 50%;
     animation: pulse 2s infinite;
   }
- 
+
   .login-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: clamp(52px, 12vw, 72px);
@@ -121,14 +121,14 @@
     margin-bottom: 12px;
   }
   .login-title span { color: var(--accent); }
- 
+
   .login-sub {
     color: var(--text-muted);
     font-size: 14px;
     line-height: 1.6;
     margin-bottom: 40px;
   }
- 
+
   .field {
     margin-bottom: 16px;
   }
@@ -159,7 +159,7 @@
     box-shadow: 0 0 0 3px rgba(79,195,247,0.1);
   }
   .field select option { background: var(--dark3); }
- 
+
   .btn-primary {
     width: 100%;
     padding: 16px;
@@ -180,12 +180,12 @@
   }
   .btn-primary:hover { background: #81D4FA; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(79,195,247,0.3); }
   .btn-primary:active { transform: translateY(0); }
- 
+
   /* ── FORM SCREEN ── */
   #form-screen {
     padding: 0;
   }
- 
+
   .form-header {
     padding: 24px 24px 20px;
     border-bottom: 1px solid var(--dark3);
@@ -198,7 +198,7 @@
     z-index: 10;
     backdrop-filter: blur(20px);
   }
- 
+
   .form-header-left h2 {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 22px;
@@ -210,7 +210,7 @@
     color: var(--text-muted);
     margin-top: 2px;
   }
- 
+
   .player-chip {
     display: flex;
     align-items: center;
@@ -233,7 +233,7 @@
     font-weight: 700;
     color: var(--dark);
   }
- 
+
   /* Progress bar */
   .progress-bar {
     height: 3px;
@@ -247,14 +247,14 @@
     transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 0 2px 2px 0;
   }
- 
+
   .form-body {
     padding: 24px;
     max-width: 600px;
     margin: 0 auto;
     width: 100%;
   }
- 
+
   .date-display {
     display: flex;
     align-items: center;
@@ -268,7 +268,7 @@
   .date-display .icon { font-size: 18px; }
   .date-display .date-text { font-size: 13px; color: var(--text-muted); }
   .date-display .date-value { font-size: 14px; font-weight: 600; color: var(--text); }
- 
+
   /* Question card */
   .question-card {
     background: var(--dark3);
@@ -281,7 +281,7 @@
   }
   .question-card:hover { border-color: rgba(79,195,247,0.3); }
   .question-card.answered { border-color: rgba(0,230,118,0.3); }
- 
+
   .q-header {
     display: flex;
     align-items: flex-start;
@@ -301,11 +301,11 @@
   .q-icon.purple { background: rgba(179,136,255,0.12); }
   .q-icon.orange { background: rgba(255,109,0,0.12); }
   .q-icon.green { background: rgba(0,230,118,0.12); }
- 
+
   .q-text { flex: 1; }
   .q-text h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; }
   .q-text p { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
- 
+
   .q-check {
     width: 20px; height: 20px;
     border-radius: 50%;
@@ -321,10 +321,10 @@
     background: var(--green);
     color: var(--dark);
   }
- 
+
   /* Scale */
   .scale-wrap { display: flex; flex-direction: column; gap: 10px; }
- 
+
   .scale-labels {
     display: flex;
     justify-content: space-between;
@@ -333,7 +333,7 @@
     letter-spacing: 0.03em;
     padding: 0 2px;
   }
- 
+
   .scale-buttons {
     display: flex;
     gap: 6px;
@@ -359,7 +359,7 @@
   .scale-btn.selected-3, .scale-btn.selected-4 { background: rgba(255,214,0,0.15); border-color: var(--yellow); color: var(--yellow); transform: scale(1.08); }
   .scale-btn.selected-5, .scale-btn.selected-6 { background: rgba(255,109,0,0.15); border-color: var(--orange); color: var(--orange); transform: scale(1.08); }
   .scale-btn.selected-7 { background: rgba(255,23,68,0.15); border-color: var(--red); color: var(--red); transform: scale(1.08); }
- 
+
   /* Score preview */
   .score-preview {
     margin-top: 12px;
@@ -374,13 +374,13 @@
   }
   .score-preview.visible { display: flex; }
   .score-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
- 
+
   /* SUBMIT */
   .submit-section {
     margin-top: 8px;
     padding: 20px 0 40px;
   }
- 
+
   .hooper-preview {
     background: var(--dark3);
     border: 1px solid var(--dark4);
@@ -421,21 +421,21 @@
     border-radius: 3px;
     transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
- 
+
   /* ── RESULTS SCREEN ── */
   #result {
     align-items: center;
     justify-content: center;
     padding: 40px 20px;
   }
- 
+
   .result-wrap {
     width: 100%;
     max-width: 420px;
     text-align: center;
     animation: fadeUp 0.6s ease both;
   }
- 
+
   .result-icon {
     width: 80px; height: 80px;
     border-radius: 50%;
@@ -445,7 +445,7 @@
     font-size: 36px;
     margin: 0 auto 24px;
   }
- 
+
   .result-title {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 48px;
@@ -453,14 +453,14 @@
     line-height: 1;
     margin-bottom: 8px;
   }
- 
+
   .result-sub {
     font-size: 14px;
     color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 32px;
   }
- 
+
   .result-stats {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -476,7 +476,7 @@
   }
   .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 6px; }
   .stat-value { font-family: 'DM Mono', monospace; font-size: 18px; font-weight: 500; }
- 
+
   .btn-secondary {
     width: 100%;
     padding: 14px;
@@ -491,12 +491,12 @@
     margin-top: 12px;
   }
   .btn-secondary:hover { border-color: var(--text-muted); color: var(--text); }
- 
+
   /* COACH VIEW */
   #coach {
     padding: 0;
   }
- 
+
   .coach-header {
     padding: 24px;
     border-bottom: 1px solid var(--dark3);
@@ -511,9 +511,9 @@
     letter-spacing: 0.05em;
   }
   .coach-header p { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
- 
+
   .coach-body { padding: 24px; max-width: 900px; margin: 0 auto; }
- 
+
   .coach-stats-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -529,7 +529,7 @@
   .coach-stat .label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; }
   .coach-stat .value { font-family: 'Bebas Neue', sans-serif; font-size: 36px; letter-spacing: 0.03em; line-height: 1; }
   .coach-stat .sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
- 
+
   .section-title {
     font-size: 11px;
     text-transform: uppercase;
@@ -546,7 +546,7 @@
     height: 1px;
     background: var(--dark4);
   }
- 
+
   .player-table {
     width: 100%;
     border-collapse: collapse;
@@ -568,7 +568,7 @@
     vertical-align: middle;
   }
   .player-table tr:hover td { background: rgba(79,195,247,0.03); }
- 
+
   .player-name-cell { display: flex; align-items: center; gap: 10px; }
   .mini-avatar {
     width: 30px; height: 30px;
@@ -580,7 +580,7 @@
     font-weight: 700;
     flex-shrink: 0;
   }
- 
+
   .score-pill {
     display: inline-flex;
     align-items: center;
@@ -595,7 +595,7 @@
   .pill-yellow { background: rgba(255,214,0,0.12); color: var(--yellow); }
   .pill-orange { background: rgba(255,109,0,0.12); color: var(--orange); }
   .pill-red { background: rgba(255,23,68,0.12); color: var(--red); }
- 
+
   .status-tag {
     font-size: 11px;
     font-weight: 500;
@@ -607,7 +607,7 @@
   .tag-orange { background: rgba(255,109,0,0.1); color: var(--orange); }
   .tag-red { background: rgba(255,23,68,0.1); color: var(--red); }
   .tag-grey { background: rgba(139,149,168,0.1); color: var(--text-muted); }
- 
+
   /* NAV */
   .nav-tabs {
     display: flex;
@@ -632,7 +632,7 @@
     transition: all 0.2s;
   }
   .nav-tab.active { background: var(--dark4); color: var(--text); }
- 
+
   .export-btn {
     display: inline-flex;
     align-items: center;
@@ -649,7 +649,7 @@
     font-family: 'DM Sans', sans-serif;
   }
   .export-btn:hover { background: rgba(0,230,118,0.2); }
- 
+
   /* EMPTY STATE */
   .empty-state {
     text-align: center;
@@ -658,7 +658,7 @@
   }
   .empty-state .icon { font-size: 40px; margin-bottom: 16px; }
   .empty-state p { font-size: 14px; line-height: 1.6; }
- 
+
   /* ALREADY DONE SCREEN */
   .already-done {
     display: flex;
@@ -717,7 +717,7 @@
     font-weight: 600;
     margin-top: 4px;
   }
- 
+
   /* RPE SCREEN */
   .rpe-wrap {
     width: 100%;
@@ -779,7 +779,7 @@
   .rpe-btn.sel-6 .rpe-num, .rpe-btn.sel-7 .rpe-num, .rpe-btn.sel-8 .rpe-num { color: var(--orange); }
   .rpe-btn.sel-9, .rpe-btn.sel-10 { background: rgba(255,23,68,0.15); border-color: var(--red); }
   .rpe-btn.sel-9 .rpe-num, .rpe-btn.sel-10 .rpe-num { color: var(--red); }
- 
+
   .rpe-charge-box {
     background: var(--dark3);
     border: 1px solid var(--dark4);
@@ -792,7 +792,7 @@
   .rpe-charge-box h4 { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 8px; }
   .rpe-charge-value { font-family: 'Bebas Neue', sans-serif; font-size: 52px; line-height: 1; }
   .rpe-charge-formula { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
- 
+
   /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px); }
@@ -802,7 +802,7 @@
     0%, 100% { opacity: 1; transform: scale(1); }
     50% { opacity: 0.5; transform: scale(0.8); }
   }
- 
+
   /* RESPONSIVE */
   @media (max-width: 480px) {
     .scale-btn { font-size: 11px; border-radius: 6px; }
@@ -812,20 +812,20 @@
 </style>
 </head>
 <body>
- 
+
 <!-- LANGUAGE TOGGLE -->
 <div class="lang-toggle">
   <button class="lang-btn active" onclick="setLang('fr')">FR</button>
   <button class="lang-btn" onclick="setLang('en')">EN</button>
 </div>
- 
+
 <!-- ── SCREEN: LOGIN ── -->
 <div id="login" class="screen active">
   <div class="login-wrap">
     <div class="badge"><span class="badge-dot"></span><span>Wellbeing Monitoring</span></div>
     <h1 class="login-title">HOOPER<br><span>TEST</span></h1>
     <p class="login-sub">Évaluez votre état physique et mental chaque matin en 30 secondes.</p>
- 
+
     <!-- CHOIX JOUEUR / STAFF -->
     <div id="roleSelect" style="display:flex; gap:16px; margin:28px 0 8px;">
       <button onclick="selectRole('joueur')" id="btnJoueur" style="flex:1; padding:20px 12px; border-radius:16px; border:2px solid var(--dark4); background:var(--dark3); color:var(--text); cursor:pointer; font-family:'DM Sans',sans-serif; transition:all 0.2s;">
@@ -839,7 +839,7 @@
         <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">Accès dashboard coach</div>
       </button>
     </div>
- 
+
     <!-- SECTION JOUEUR -->
     <div id="sectionJoueur" style="display:none; width:100%;">
       <div class="field">
@@ -875,7 +875,7 @@
         <span>💪 RPE — Après Séance</span> →
       </button>
     </div>
- 
+
     <!-- SECTION STAFF -->
     <div id="sectionStaff" style="display:none; width:100%;">
       <div class="field" style="margin-bottom:12px;">
@@ -891,10 +891,10 @@
         <span>Accéder au dashboard →</span>
       </button>
     </div>
- 
+
   </div>
 </div>
- 
+
 <!-- ── SCREEN: FORM ── -->
 <div id="form-screen" class="screen">
   <div class="form-header">
@@ -908,7 +908,7 @@
     </div>
   </div>
   <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
- 
+
   <div class="form-body">
     <div class="date-display">
       <span class="icon">📅</span>
@@ -917,7 +917,7 @@
         <div class="date-value" id="todayDate">—</div>
       </div>
     </div>
- 
+
     <!-- Q1 Sommeil -->
     <div class="question-card" id="card-0">
       <div class="q-header">
@@ -937,7 +937,7 @@
         <div class="score-preview" id="preview-0"><div class="score-dot"></div><span></span></div>
       </div>
     </div>
- 
+
     <!-- Q2 Fatigue -->
     <div class="question-card" id="card-1">
       <div class="q-header">
@@ -957,7 +957,7 @@
         <div class="score-preview" id="preview-1"><div class="score-dot"></div><span></span></div>
       </div>
     </div>
- 
+
     <!-- Q3 Stress -->
     <div class="question-card" id="card-2">
       <div class="q-header">
@@ -977,7 +977,7 @@
         <div class="score-preview" id="preview-2"><div class="score-dot"></div><span></span></div>
       </div>
     </div>
- 
+
     <!-- Q4 Douleurs -->
     <div class="question-card" id="card-3">
       <div class="q-header">
@@ -997,7 +997,7 @@
         <div class="score-preview" id="preview-3"><div class="score-dot"></div><span></span></div>
       </div>
     </div>
- 
+
     <!-- Submit -->
     <div class="submit-section">
       <div class="hooper-preview" id="hooperPreview">
@@ -1012,14 +1012,14 @@
     </div>
   </div>
 </div>
- 
+
 <!-- ── SCREEN: RESULT ── -->
 <div id="result" class="screen">
   <div class="result-wrap">
     <div class="result-icon" id="resultIcon">✅</div>
     <h1 class="result-title" id="resultTitle">ENVOYÉ !</h1>
     <p class="result-sub" id="resultSub">Ton test a été transmis au staff. Bonne séance !</p>
- 
+
     <div class="result-stats">
       <div class="stat-box">
         <div class="stat-label" data-t="indexLabel">Indice Hooper</div>
@@ -1038,11 +1038,11 @@
         <div class="stat-value" id="finalFatigue">—</div>
       </div>
     </div>
- 
+
     <button class="btn-secondary" onclick="goBack()" data-t="btnBack">← Retour à l'accueil</button>
   </div>
 </div>
- 
+
 <!-- ── SCREEN: ALREADY DONE ── -->
 <div id="already-done" class="screen">
   <div class="already-done">
@@ -1057,7 +1057,7 @@
     <button class="btn-secondary" onclick="goBack()">← Retour à l'accueil</button>
   </div>
 </div>
- 
+
 <!-- ── SCREEN: RPE ── -->
 <div id="rpe-screen" class="screen">
   <div class="form-header">
@@ -1071,10 +1071,10 @@
     </div>
   </div>
   <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
- 
+
   <div class="form-body">
     <div class="rpe-wrap">
- 
+
       <div class="date-display">
         <span class="icon">⚽</span>
         <div>
@@ -1086,7 +1086,7 @@
           <div class="date-value" style="color:var(--accent)">90 min</div>
         </div>
       </div>
- 
+
       <div class="question-card" id="rpe-card" style="margin-top:16px">
         <div class="q-header">
           <div class="q-icon orange">💪</div>
@@ -1096,17 +1096,17 @@
           </div>
           <div class="q-check" id="rpe-check">✓</div>
         </div>
- 
+
         <p class="rpe-section-title">1 — Très facile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 — Maximum absolu</p>
- 
+
         <div class="rpe-grid" id="rpeButtons1"></div>
         <div class="rpe-grid-2" id="rpeButtons2"></div>
- 
+
         <div class="score-preview" id="rpe-preview" style="margin-top:8px">
           <div class="score-dot"></div><span></span>
         </div>
       </div>
- 
+
       <!-- Charge calculée -->
       <div class="rpe-charge-box" id="rpeChargeBox">
         <h4>CHARGE D'ENTRAÎNEMENT CALCULÉE</h4>
@@ -1116,11 +1116,11 @@
           <div id="rpeChargeBar" style="height:100%; border-radius:3px; background:var(--accent); width:0%; transition:width 0.8s cubic-bezier(0.4,0,0.2,1);"></div>
         </div>
       </div>
- 
+
       <button class="btn-primary" id="rpeSubmitBtn" onclick="submitRPE()" disabled style="opacity:0.4; cursor:not-allowed; margin-top:8px;">
         Envoyer la charge ↗
       </button>
- 
+
     </div>
   </div>
 </div>
@@ -1133,7 +1133,7 @@
     <button class="export-btn" onclick="exportCSV()">⬇ Export CSV</button>
   </div>
   <div class="coach-body">
- 
+
     <div class="coach-stats-row" id="coachStatRow">
       <div class="coach-stat">
         <div class="label" data-t="statResponded">Réponses reçues</div>
@@ -1156,14 +1156,14 @@
         <div class="sub">🔴 ≥19 pts</div>
       </div>
     </div>
- 
+
     <div class="section-title" data-t="sectionPlayers">Joueurs du jour</div>
- 
+
     <div id="emptyState" class="empty-state">
       <div class="icon">📋</div>
       <p data-t="emptyMsg">Aucune réponse reçue aujourd'hui.<br>Les joueurs seront notifiés à 7h30.</p>
     </div>
- 
+
     <table class="player-table" id="playerTable" style="display:none">
       <thead>
         <tr>
@@ -1178,13 +1178,13 @@
       </thead>
       <tbody id="playerTableBody"></tbody>
     </table>
- 
+
     <div style="margin-top:32px">
       <button class="btn-secondary" onclick="goBack()" data-t="btnBack">← Déconnexion</button>
     </div>
   </div>
 </div>
- 
+
 <script>
 // ── I18N ──────────────────────────────────────────────────────────────────────
 const i18n = {
@@ -1251,7 +1251,7 @@ const i18n = {
     resultTitle: 'SENT!', resultSub: 'Your test has been transmitted to staff. Good session!',
   }
 };
- 
+
 let lang = 'fr';
 function setLang(l) {
   lang = l;
@@ -1261,18 +1261,18 @@ function setLang(l) {
     if (i18n[l][key]) el.innerHTML = i18n[l][key];
   });
 }
- 
+
 // ── STATE ─────────────────────────────────────────────────────────────────────
 let currentPlayer = '';
 let answers = [null, null, null, null];
 let rpeAnswer = null;
 let responses = {};
 try { responses = JSON.parse(localStorage.getItem('hooперResponses') || '{}'); } catch(e) { responses = {}; }
- 
+
 const DURATION = 90; // minutes fixes
 const SUPABASE_URL = 'https://czgrjjvvuuhykymmuinn.supabase.co';
 const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6Z3JqanZ2dXVoeWt5bW11aW5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4MTg4NDEsImV4cCI6MjA5MjM5NDg0MX0._WWxtMY1JWysqCBg2hXs3GMtT0VKLa7fOgCUra2wQkQ';
- 
+
 // Supabase client simple
 const db = {
   from: (table) => ({
@@ -1291,7 +1291,7 @@ const db = {
     })
   })
 };
- 
+
 // ── ROLE SELECTION ────────────────────────────────────────────────────────────
 function selectRole(role) {
   document.getElementById('sectionJoueur').style.display = role === 'joueur' ? 'block' : 'none';
@@ -1301,7 +1301,7 @@ function selectRole(role) {
   document.getElementById('btnJoueur').style.background = role === 'joueur' ? 'rgba(79,195,247,0.1)' : 'var(--dark3)';
   document.getElementById('btnStaff').style.background = role === 'staff' ? 'rgba(79,195,247,0.1)' : 'var(--dark3)';
 }
- 
+
 // ── STAFF LOGIN ───────────────────────────────────────────────────────────────
 async function handleStaffLogin() {
   const email = document.getElementById('staffEmail').value.trim();
@@ -1315,7 +1315,7 @@ async function handleStaffLogin() {
   document.getElementById('staffError').style.display = 'none';
   window.open('dashboard_realtime.html', '_blank');
 }
- 
+
 // ── NOTIFY STAFF ──────────────────────────────────────────────────────────────
 async function checkAndNotify() {
   try {
@@ -1325,8 +1325,7 @@ async function checkAndNotify() {
     });
   } catch(e) { console.log('Notify:', e); }
 }
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6Z3JqanZ2dXVoeWt5bW11aW5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4MTg4NDEsImV4cCI6MjA5MjM5NDg0MX0._WWxtMY1JWysqCBg2hXs3GMtT0VKLa7fOgCUra2wQkQ';
- 
+
 async function sendToSupabase(table, data) {
   try {
     await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
@@ -1341,24 +1340,24 @@ async function sendToSupabase(table, data) {
     });
   } catch(err) { console.log('Supabase error:', err); }
 }
- 
+
 const rpeLabels = {
   1:'Repos', 2:'Très facile', 3:'Facile', 4:'Modéré', 5:'Un peu dur',
   6:'Dur', 7:'Très dur', 8:'Très très dur', 9:'Extrêmement dur', 10:'Maximum'
 };
- 
+
 const scoreColors = {
   1: 'var(--green)', 2: 'var(--green)', 3: 'var(--yellow)', 4: 'var(--yellow)',
   5: 'var(--orange)', 6: 'var(--orange)', 7: 'var(--red)'
 };
- 
+
 // ── INIT ──────────────────────────────────────────────────────────────────────
 function init() {
   buildScales();
   buildRPEButtons();
   setTodayDate();
 }
- 
+
 function setTodayDate() {
   const now = new Date();
   const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -1367,7 +1366,7 @@ function setTodayDate() {
   document.getElementById('coachDate').textContent = dateStr;
   document.getElementById('rpeTodayDate').textContent = dateStr;
 }
- 
+
 function buildRPEButtons() {
   const wrap1 = document.getElementById('rpeButtons1');
   const wrap2 = document.getElementById('rpeButtons2');
@@ -1382,7 +1381,7 @@ function buildRPEButtons() {
     else wrap2.appendChild(btn);
   }
 }
- 
+
 function buildScales() {
   for (let q = 0; q < 4; q++) {
     const wrap = document.getElementById(`scale-${q}`);
@@ -1396,23 +1395,23 @@ function buildScales() {
     }
   }
 }
- 
- 
+
+
 function handleLogin(mode) {
   const sel = document.getElementById('playerSelect');
   const val = sel.value;
   if (!val) return;
- 
+
   if (val === 'coach') {
     showScreen('coach');
     renderCoachView();
     return;
   }
- 
+
   currentPlayer = val;
   const today = getLocalDate();
   const initials = val.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
- 
+
   if (mode === 'hooper') {
     // Vérifier si déjà répondu aujourd'hui
     if (responses[today] && responses[today][val] && responses[today][val].hooper_done) {
@@ -1441,7 +1440,7 @@ function handleLogin(mode) {
     document.getElementById('submitBtn').style.opacity = '0.4';
     document.getElementById('submitBtn').style.cursor = 'not-allowed';
     showScreen('form-screen');
- 
+
   } else if (mode === 'rpe') {
     // Vérifier si déjà répondu RPE aujourd'hui
     if (responses[today] && responses[today][val] && responses[today][val].rpe_done) {
@@ -1469,7 +1468,7 @@ function handleLogin(mode) {
     showScreen('rpe-screen');
   }
 }
- 
+
 // ── SCORE SELECTION ───────────────────────────────────────────────────────────
 function selectScore(qIdx, val) {
   answers[qIdx] = val;
@@ -1478,10 +1477,10 @@ function selectScore(qIdx, val) {
     btn.className = 'scale-btn';
     if (i + 1 === val) btn.classList.add(`selected-${val}`);
   });
- 
+
   // Card answered state
   document.getElementById(`card-${qIdx}`).classList.add('answered');
- 
+
   // Preview text
   const preview = document.getElementById(`preview-${qIdx}`);
   const texts = i18n[lang].previewTexts;
@@ -1489,15 +1488,15 @@ function selectScore(qIdx, val) {
   dot.style.background = scoreColors[val];
   preview.querySelector('span').textContent = `${val}/7 — ${texts[val - 1]}`;
   preview.classList.add('visible');
- 
+
   updateProgress();
   updateHooперPreview();
 }
- 
+
 function updateProgress() {
   const answered = answers.filter(a => a !== null).length;
   document.getElementById('progressFill').style.width = `${(answered / 4) * 100}%`;
- 
+
   if (answered === 4) {
     const btn = document.getElementById('submitBtn');
     btn.disabled = false;
@@ -1505,25 +1504,25 @@ function updateProgress() {
     btn.style.cursor = 'pointer';
   }
 }
- 
+
 function updateHooперPreview() {
   const answered = answers.filter(a => a !== null).length;
   if (answered < 4) return;
- 
+
   const total = answers.reduce((s, v) => s + v, 0);
   const preview = document.getElementById('hooperPreview');
   preview.classList.add('visible');
- 
+
   const scoreEl = document.getElementById('hooperScoreBig');
   const labelEl = document.getElementById('hooperLabelBig');
   const barFill = document.getElementById('hooperBarFill');
- 
+
   let color, label;
   if (total <= 10) { color = 'var(--green)'; label = i18n[lang].statusVeryFresh; }
   else if (total <= 14) { color = 'var(--yellow)'; label = i18n[lang].statusFresh; }
   else if (total <= 18) { color = 'var(--orange)'; label = i18n[lang].statusTired; }
   else { color = 'var(--red)'; label = i18n[lang].statusVeryTired; }
- 
+
   scoreEl.textContent = total;
   scoreEl.style.color = color;
   labelEl.textContent = label;
@@ -1531,7 +1530,7 @@ function updateHooперPreview() {
   barFill.style.width = `${((total - 4) / 24) * 100}%`;
   barFill.style.background = color;
 }
- 
+
 // ── SUBMIT HOOPER ─────────────────────────────────────────────────────────────
 function getLocalDate() {
   const now = new Date();
@@ -1540,13 +1539,13 @@ function getLocalDate() {
   const day = String(now.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
 }
- 
+
 function submitForm() {
   if (answers.includes(null)) return;
   const total = answers.reduce((s, v) => s + v, 0);
   const today = getLocalDate();
   const timestamp = new Date().toISOString();
- 
+
   const payload = {
     type: 'hooper',
     player: currentPlayer,
@@ -1559,7 +1558,7 @@ function submitForm() {
     hooper_done: true,
     timestamp: timestamp
   };
- 
+
   sendToSupabase('hooper', {
     date: today,
     player: currentPlayer,
@@ -1571,18 +1570,18 @@ function submitForm() {
     statut: status
   });
   checkAndNotify();
- 
+
   if (!responses[today]) responses[today] = {};
   if (!responses[today][currentPlayer]) responses[today][currentPlayer] = {};
   Object.assign(responses[today][currentPlayer], payload);
   try { localStorage.setItem('hooперResponses', JSON.stringify(responses)); } catch(e) {}
- 
+
   let color, status;
   if (total <= 10) { color = 'var(--green)'; status = i18n[lang].statusVeryFresh; }
   else if (total <= 14) { color = 'var(--yellow)'; status = i18n[lang].statusFresh; }
   else if (total <= 18) { color = 'var(--orange)'; status = i18n[lang].statusTired; }
   else { color = 'var(--red)'; status = i18n[lang].statusVeryTired; }
- 
+
   document.getElementById('resultIcon').style.background = `rgba(${colorToRgb(color)}, 0.15)`;
   document.getElementById('resultTitle').textContent = i18n[lang].resultTitle;
   document.getElementById('resultSub').textContent = i18n[lang].resultSub;
@@ -1594,7 +1593,7 @@ function submitForm() {
   document.getElementById('finalFatigue').textContent = `${answers[1]}/7`;
   showScreen('result');
 }
- 
+
 // ── RPE SELECTION ─────────────────────────────────────────────────────────────
 function selectRPE(val) {
   rpeAnswer = val;
@@ -1606,7 +1605,7 @@ function selectRPE(val) {
   document.getElementById('rpe-card').classList.add('answered');
   document.getElementById('rpe-check').style.background = 'var(--green)';
   document.getElementById('rpe-check').style.color = 'var(--dark)';
- 
+
   const preview = document.getElementById('rpe-preview');
   const dot = preview.querySelector('.score-dot');
   const colors = {1:'var(--green)',2:'var(--green)',3:'var(--yellow)',4:'var(--yellow)',5:'var(--yellow)',
@@ -1614,26 +1613,26 @@ function selectRPE(val) {
   dot.style.background = colors[val];
   preview.querySelector('span').textContent = `${val}/10 — ${rpeLabels[val]}`;
   preview.classList.add('visible');
- 
+
   const charge = val * DURATION;
   document.getElementById('rpeChargeBox').classList.add('visible');
   document.getElementById('rpeChargeValue').textContent = `${charge} UA`;
   document.getElementById('rpeChargeFormula').textContent = `RPE ${val} × ${DURATION} min = ${charge} Unités Arbitraires`;
   document.getElementById('rpeChargeBar').style.width = `${(charge / 1000) * 100}%`;
- 
+
   const btn = document.getElementById('rpeSubmitBtn');
   btn.disabled = false;
   btn.style.opacity = '1';
   btn.style.cursor = 'pointer';
 }
- 
+
 // ── SUBMIT RPE ────────────────────────────────────────────────────────────────
 function submitRPE() {
   if (!rpeAnswer) return;
   const charge = rpeAnswer * DURATION;
   const today = getLocalDate();
   const timestamp = new Date().toISOString();
- 
+
   const payload = {
     type: 'rpe',
     player: currentPlayer,
@@ -1644,7 +1643,7 @@ function submitRPE() {
     rpe_done: true,
     timestamp: timestamp
   };
- 
+
   sendToSupabase('rpe', {
     date: today,
     player: currentPlayer,
@@ -1652,12 +1651,12 @@ function submitRPE() {
     duration: DURATION,
     charge: charge
   });
- 
+
   if (!responses[today]) responses[today] = {};
   if (!responses[today][currentPlayer]) responses[today][currentPlayer] = {};
   Object.assign(responses[today][currentPlayer], payload);
   try { localStorage.setItem('hooперResponses', JSON.stringify(responses)); } catch(e) {}
- 
+
   // Réutilise l'écran résultat
   document.getElementById('resultIcon').style.background = 'rgba(79,195,247,0.15)';
   document.getElementById('resultTitle').textContent = 'ENVOYÉ !';
@@ -1670,18 +1669,18 @@ function submitRPE() {
   document.getElementById('finalFatigue').textContent = `${DURATION} min`;
   showScreen('result');
 }
- 
+
 function colorToRgb(v) {
   const map = { 'var(--green)': '0,230,118', 'var(--yellow)': '255,214,0', 'var(--orange)': '255,109,0', 'var(--red)': '255,23,68' };
   return map[v] || '79,195,247';
 }
- 
+
 // ── COACH VIEW ────────────────────────────────────────────────────────────────
 function renderCoachView() {
   const today = new Date().toISOString().split('T')[0];
   const todayData = responses[today] || {};
   const players = Object.values(todayData);
- 
+
   document.getElementById('statCount').textContent = players.length;
   
   if (players.length > 0) {
@@ -1702,23 +1701,23 @@ function renderCoachView() {
     document.getElementById('playerTable').style.display = 'none';
   }
 }
- 
+
 function renderPlayerTable(players) {
   const tbody = document.getElementById('playerTableBody');
   tbody.innerHTML = '';
   players.sort((a, b) => b.total - a.total);
- 
+
   players.forEach(p => {
     let pillClass, tagClass, statusText;
     if (p.total <= 10) { pillClass = 'pill-green'; tagClass = 'tag-green'; statusText = i18n[lang].statusVeryFresh; }
     else if (p.total <= 14) { pillClass = 'pill-yellow'; tagClass = 'tag-yellow'; statusText = i18n[lang].statusFresh; }
     else if (p.total <= 18) { pillClass = 'pill-orange'; tagClass = 'tag-orange'; statusText = i18n[lang].statusTired; }
     else { pillClass = 'pill-red'; tagClass = 'tag-red'; statusText = i18n[lang].statusVeryTired; }
- 
+
     const initials = p.player.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
     const bgColors = ['1A3A5C','2E6DA4','0277BD','006064','1B5E20','4A148C','B71C1C','E65100'];
     const bg = bgColors[p.player.charCodeAt(0) % bgColors.length];
- 
+
     tbody.innerHTML += `
       <tr>
         <td><div class="player-name-cell">
@@ -1734,21 +1733,21 @@ function renderPlayerTable(players) {
       </tr>`;
   });
 }
- 
+
 function getScorePill(v) {
   if (v <= 2) return 'pill-green';
   if (v <= 4) return 'pill-yellow';
   if (v <= 6) return 'pill-orange';
   return 'pill-red';
 }
- 
+
 // ── EXPORT CSV ────────────────────────────────────────────────────────────────
 function exportCSV() {
   const today = new Date().toISOString().split('T')[0];
   const todayData = responses[today] || {};
   const players = Object.values(todayData);
   if (!players.length) { alert('Aucune donnée à exporter.'); return; }
- 
+
   let csv = 'Date,Joueur,Sommeil,Fatigue,Stress,Douleurs,Indice Hooper,Statut\n';
   players.forEach(p => {
     let status;
@@ -1758,26 +1757,26 @@ function exportCSV() {
     else status = 'Très Fatigué';
     csv += `${p.date},${p.player},${p.sleep},${p.fatigue},${p.stress},${p.pain},${p.total},${status}\n`;
   });
- 
+
   const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
   const link = document.createElement('a');
   link.href = URL.createObjectURL(blob);
   link.download = `hooper_${today}.csv`;
   link.click();
 }
- 
+
 // ── NAVIGATION ────────────────────────────────────────────────────────────────
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo(0, 0);
 }
- 
+
 function goBack() {
   document.getElementById('playerSelect').value = '';
   showScreen('login');
 }
- 
+
 // ── START ─────────────────────────────────────────────────────────────────────
 init();
 </script>
