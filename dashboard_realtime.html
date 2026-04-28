@@ -172,8 +172,12 @@
       <p>Monitoring temps réel — Bien-être & Charge d'entraînement</p>
     </div>
     <div class="header-right">
-      <div class="live-dot"><div class="dot"></div> LIVE</div>
-      <div class="date-badge" id="dateBadge">—</div>
+      <div class="live-dot" id="liveDot"><div class="dot"></div> LIVE</div>
+      <div style="display:flex; gap:8px; align-items:center;">
+        <select id="selJour" onchange="changeDate()" style="padding:8px 10px; border-radius:8px; border:1px solid #E2E8F0; background:white; font-family:'DM Sans',sans-serif; font-size:13px; color:#0F172A; cursor:pointer;"></select>
+        <select id="selMois" onchange="changeDate()" style="padding:8px 10px; border-radius:8px; border:1px solid #E2E8F0; background:white; font-family:'DM Sans',sans-serif; font-size:13px; color:#0F172A; cursor:pointer;"></select>
+        <select id="selAnnee" onchange="changeDate()" style="padding:8px 10px; border-radius:8px; border:1px solid #E2E8F0; background:white; font-family:'DM Sans',sans-serif; font-size:13px; color:#0F172A; cursor:pointer;"></select>
+      </div>
     </div>
   </div>
 
@@ -278,11 +282,63 @@ const AVATAR_COLORS = [
 ];
 
 let hoopers = {}, rpes = {}, currentFilter = 'all';
+let selectedDateStr = '';
 
-// Date
-const today = new Date();
-const todayStr = today.getFullYear() + '-' + String(today.getMonth()+1).padStart(2,'0') + '-' + String(today.getDate()).padStart(2,'0');
-document.getElementById('dateBadge').textContent = today.toLocaleDateString('fr-FR', {weekday:'long', day:'numeric', month:'long'});
+// ── DATE SELECTOR ─────────────────────────────────────────────────────────────
+function initDateSelector() {
+  const now = new Date();
+  const jours = Array.from({length:31}, (_,i) => i+1);
+  const mois = ['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'];
+  const annees = [2025, 2026, 2027];
+
+  const selJ = document.getElementById('selJour');
+  const selM = document.getElementById('selMois');
+  const selA = document.getElementById('selAnnee');
+
+  jours.forEach(j => {
+    const opt = document.createElement('option');
+    opt.value = j; opt.textContent = j;
+    if (j === now.getDate()) opt.selected = true;
+    selJ.appendChild(opt);
+  });
+
+  mois.forEach((m, i) => {
+    const opt = document.createElement('option');
+    opt.value = i+1; opt.textContent = m;
+    if (i === now.getMonth()) opt.selected = true;
+    selM.appendChild(opt);
+  });
+
+  annees.forEach(a => {
+    const opt = document.createElement('option');
+    opt.value = a; opt.textContent = a;
+    if (a === now.getFullYear()) opt.selected = true;
+    selA.appendChild(opt);
+  });
+
+  updateSelectedDate();
+}
+
+function updateSelectedDate() {
+  const j = String(document.getElementById('selJour').value).padStart(2,'0');
+  const m = String(document.getElementById('selMois').value).padStart(2,'0');
+  const a = document.getElementById('selAnnee').value;
+  selectedDateStr = `${a}-${m}-${j}`;
+
+  const now = new Date();
+  const todayStr = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+  const isToday = selectedDateStr === todayStr;
+
+  // LIVE uniquement si aujourd'hui
+  document.getElementById('liveDot').style.opacity = isToday ? '1' : '0.3';
+}
+
+function changeDate() {
+  updateSelectedDate();
+  loadData();
+}
+
+initDateSelector();
 
 // ── SCORE FATIGUE ─────────────────────────────────────────────────────────────
 function calcScore(hooper, acwr) {
@@ -322,8 +378,8 @@ function getInitials(name) {
 
 // ── CHARGER DONNÉES ────────────────────────────────────────────────────────────
 async function loadData() {
-  const { data: hData } = await db.from('hooper').select('*').eq('date', todayStr);
-  const { data: rData } = await db.from('rpe').select('*').eq('date', todayStr);
+  const { data: hData } = await db.from('hooper').select('*').eq('date', selectedDateStr);
+  const { data: rData } = await db.from('rpe').select('*').eq('date', selectedDateStr);
 
   hoopers = {};
   rpes = {};
