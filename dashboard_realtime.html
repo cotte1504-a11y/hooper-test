@@ -150,9 +150,8 @@
   .progress-bar { height:10px; background:var(--dark3); border-radius:5px; overflow:hidden; }
   .progress-fill { height:100%; background:linear-gradient(90deg, var(--green), #4ADE80); border-radius:5px; transition:width 0.8s cubic-bezier(0.4,0,0.2,1); }
   .progress-players { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
-  .player-chip { padding:4px 10px; border-radius:20px; font-size:11px; font-weight:600; border:1px solid var(--border); background:var(--dark2); color:var(--muted); transition:all 0.3s; }
-  .player-chip.done-hooper { background:rgba(22,163,74,0.1); border-color:rgba(22,163,74,0.4); color:var(--green); }
-  .player-chip.done-both { background:rgba(29,78,216,0.1); border-color:rgba(29,78,216,0.4); color:var(--accent); }
+  .player-chip { padding:5px 12px; border-radius:20px; font-size:11px; font-weight:500; border:1px solid #E2E8F0; background:#F8FAFC; color:#CBD5E1; transition:all 0.3s; }
+  .player-chip.done { background:#1E3A5F; border-color:#1E3A5F; color:#FFFFFF; font-weight:700; box-shadow:0 1px 3px rgba(30,58,95,0.3); }
 
   .date-badge { background:var(--dark2); border:1px solid var(--border); border-radius:8px; padding:8px 16px; font-family:'DM Mono',monospace; font-size:12px; color:var(--accent); }
 
@@ -199,50 +198,61 @@
 
   <!-- STATS -->
   <div class="stats-row">
-    <div class="stat-card g"><div class="stat-label">Très frais</div><div class="stat-value" id="sFresh">0</div><div class="stat-sub">Score 0–3</div></div>
-    <div class="stat-card y"><div class="stat-label">À surveiller</div><div class="stat-value" id="sWatch">0</div><div class="stat-sub">Score 4–7</div></div>
-    <div class="stat-card r"><div class="stat-label">Séance à adapter</div><div class="stat-value" id="sAdapt">0</div><div class="stat-sub">Score 8–10</div></div>
-    <div class="stat-card a"><div class="stat-label">Score moyen équipe</div><div class="stat-value" id="sAvg">—</div><div class="stat-sub">/ 10</div></div>
+    <div class="stat-card g"><div class="stat-label">🟢 Très frais</div><div class="stat-value" id="sFresh">0</div><div class="stat-sub">Hooper ≤ 10</div></div>
+    <div class="stat-card y"><div class="stat-label">🟡 Frais</div><div class="stat-value" id="sWatch">0</div><div class="stat-sub">Hooper 11–14</div></div>
+    <div class="stat-card o" style="background:white;border:1px solid #E2E8F0;border-radius:12px;padding:20px;position:relative;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.06);"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:#EA580C;"></div><div class="stat-label">🟠 Fatigué</div><div class="stat-value" style="color:#EA580C" id="sTired">0</div><div class="stat-sub">Hooper 15–18</div></div>
+    <div class="stat-card r"><div class="stat-label">🔴 Très fatigué</div><div class="stat-value" id="sAdapt">0</div><div class="stat-sub">Hooper ≥ 19</div></div>
   </div>
 
   <!-- MAIN -->
   <div class="main-grid">
 
+    <!-- CLASSEMENT HOOPER -->
     <div class="card">
       <div class="card-header">
-        <div class="card-title">CLASSEMENT FATIGUE</div>
-        <div class="card-sub">Combinaison Hooper + ACWR · Du plus fatigué au moins fatigué</div>
+        <div class="card-title">🏃 CLASSEMENT HOOPER</div>
+        <div class="card-sub">Score sur 28 · Du plus fatigué au moins fatigué</div>
       </div>
-      <div class="card-body" id="rankingList"><div class="empty">En attente des réponses...</div></div>
+      <div class="card-body" id="rankingHooper"><div class="empty">En attente des réponses...</div></div>
     </div>
 
+    <!-- CLASSEMENT ACWR -->
     <div class="card">
       <div class="card-header">
-        <div class="card-title">ADAPTATION SÉANCE</div>
-        <div class="card-sub">Échelle 0–10 · Recommandations par joueur</div>
+        <div class="card-title">⚡ CLASSEMENT ACWR</div>
+        <div class="card-sub">Ratio charge aiguë/chronique · Zone optimale : 0.8–1.3</div>
       </div>
-      <div class="card-body">
-        <div class="scale-legend">
-          <div class="sl ok">0–3<br>Séance normale</div>
-          <div class="sl watch">4–7<br>À surveiller</div>
-          <div class="sl adapt">8–10<br>Adapter séance</div>
-        </div>
-        <div class="filter-bar">
-          <button class="fbtn active" onclick="filterAdapt('all',this)">Tous</button>
-          <button class="fbtn" onclick="filterAdapt('red',this)">À adapter</button>
-          <button class="fbtn" onclick="filterAdapt('watch',this)">À surveiller</button>
-          <button class="fbtn" onclick="filterAdapt('ok',this)">Frais</button>
-        </div>
-        <div id="adaptList"><div class="empty">En attente des réponses...</div></div>
-        <div class="reco-box">
-          <div class="reco-title">Recommandations</div>
-          <div class="reco-item"><div class="rdot" style="background:var(--red)"></div><span><strong>8–10 :</strong> Volume −30%, pas d'intensité max, récupération active</span></div>
-          <div class="reco-item"><div class="rdot" style="background:var(--yellow)"></div><span><strong>4–7 :</strong> Volume −15%, surveiller les signaux de fatigue</span></div>
-          <div class="reco-item"><div class="rdot" style="background:var(--green)"></div><span><strong>0–3 :</strong> Séance complète, intensité maximale autorisée</span></div>
-        </div>
-      </div>
+      <div class="card-body" id="rankingACWR"><div class="empty">En attente des données RPE...</div></div>
     </div>
 
+  </div>
+
+  <!-- ADAPTATION SÉANCE -->
+  <div class="card" style="margin-top:24px;">
+    <div class="card-header">
+      <div class="card-title">🎯 ADAPTATION SÉANCE</div>
+      <div class="card-sub">Basé sur l'indice Hooper · Recommandations par joueur</div>
+    </div>
+    <div class="card-body">
+      <div class="scale-legend">
+        <div class="sl ok">4–10<br>Séance normale</div>
+        <div class="sl watch">11–18<br>À surveiller</div>
+        <div class="sl adapt">19–28<br>Adapter séance</div>
+      </div>
+      <div class="filter-bar">
+        <button class="fbtn active" onclick="filterAdapt('all',this)">Tous</button>
+        <button class="fbtn" onclick="filterAdapt('red',this)">À adapter</button>
+        <button class="fbtn" onclick="filterAdapt('watch',this)">À surveiller</button>
+        <button class="fbtn" onclick="filterAdapt('ok',this)">Frais</button>
+      </div>
+      <div id="adaptList"><div class="empty">En attente des réponses...</div></div>
+      <div class="reco-box">
+        <div class="reco-title">Recommandations</div>
+        <div class="reco-item"><div class="rdot" style="background:#DC2626"></div><span><strong>19–28 :</strong> Volume −30%, pas d'intensité max, récupération active</span></div>
+        <div class="reco-item"><div class="rdot" style="background:#D97706"></div><span><strong>11–18 :</strong> Volume −15%, surveiller les signaux de fatigue</span></div>
+        <div class="reco-item"><div class="rdot" style="background:#16A34A"></div><span><strong>4–10 :</strong> Séance complète, intensité maximale autorisée</span></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -328,7 +338,8 @@ function renderAll() {
   const players = buildPlayerData();
   renderProgress(players);
   renderStats(players);
-  renderRanking(players);
+  renderRankingHooper(players);
+  renderRankingACWR(players);
   renderAdapt(players);
   checkAllDone(players);
 }
@@ -338,17 +349,21 @@ function buildPlayerData() {
     const h = hoopers[name];
     const r = rpes[name];
     const hooper = h ? h.indice_hooper : null;
-    const acwr = r ? calcACWR(name, r.charge) : null;
     const charge = r ? r.charge : null;
     const rpe = r ? r.rpe : null;
-    const score = calcScore(hooper, acwr);
-    return { name, hooper, acwr, charge, rpe, score, hasHooper: !!h, hasRpe: !!r, color: AVATAR_COLORS[i] };
+    const acwr = calcACWR(name, charge);
+    return { name, hooper, acwr, charge, rpe, hasHooper: !!h, hasRpe: !!r, color: AVATAR_COLORS[i] };
   });
 }
 
 function calcACWR(player, chargeToday) {
-  // Simplifié — retourne 1.0 si pas assez d'historique
-  return 1.0;
+  if (!chargeToday) return null;
+  // Calcul simplifié basé sur les données disponibles
+  const allRpes = Object.values(rpes).filter(r => r.player === player);
+  if (allRpes.length === 0) return null;
+  const acute = chargeToday;
+  const chronic = allRpes.reduce((s, r) => s + r.charge, 0) / allRpes.length;
+  return chronic > 0 ? Math.round((acute / chronic) * 100) / 100 : null;
 }
 
 function renderProgress(players) {
@@ -356,14 +371,13 @@ function renderProgress(players) {
   const pct = (done / PLAYERS.length) * 100;
   document.getElementById('progressCount').textContent = `${done} / ${PLAYERS.length}`;
   document.getElementById('progressFill').style.width = pct + '%';
-
   const chips = document.getElementById('playerChips');
   chips.innerHTML = '';
   players.forEach(p => {
     const chip = document.createElement('div');
-    chip.className = 'player-chip' + (p.hasHooper && p.hasRpe ? ' done-both' : p.hasHooper ? ' done-hooper' : '');
+    chip.className = 'player-chip' + (p.hasHooper && p.hasRpe ? ' done' : '');
     chip.textContent = p.name.split(' ')[0];
-    chip.title = p.hasHooper && p.hasRpe ? '✅ Hooper + RPE' : p.hasHooper ? '🌅 Hooper ✓' : '⏳ En attente';
+    chip.title = p.hasHooper && p.hasRpe ? '✅ A répondu' : '⏳ En attente';
     chips.appendChild(chip);
   });
 }
@@ -371,24 +385,37 @@ function renderProgress(players) {
 function renderStats(players) {
   const withData = players.filter(p => p.hasHooper);
   if (withData.length === 0) return;
-  document.getElementById('sFresh').textContent = withData.filter(p => p.score <= 3).length;
-  document.getElementById('sWatch').textContent = withData.filter(p => p.score > 3 && p.score <= 7).length;
-  document.getElementById('sAdapt').textContent = withData.filter(p => p.score > 7).length;
-  const avg = withData.reduce((s,p)=>s+p.score,0)/withData.length;
-  document.getElementById('sAvg').textContent = avg.toFixed(1);
+  document.getElementById('sFresh').textContent = withData.filter(p => p.hooper <= 10).length;
+  document.getElementById('sWatch').textContent = withData.filter(p => p.hooper > 10 && p.hooper <= 14).length;
+  document.getElementById('sTired').textContent = withData.filter(p => p.hooper > 14 && p.hooper <= 18).length;
+  document.getElementById('sAdapt').textContent = withData.filter(p => p.hooper > 18).length;
 }
 
-function renderRanking(players) {
-  const list = document.getElementById('rankingList');
-  const withData = players.filter(p => p.hasHooper).sort((a,b) => b.score - a.score);
-  if (withData.length === 0) { list.innerHTML = '<div class="empty">En attente des réponses...</div>'; return; }
+function getHooperColor(hooper) {
+  if (hooper <= 10) return '#16A34A';
+  if (hooper <= 14) return '#D97706';
+  if (hooper <= 18) return '#EA580C';
+  return '#DC2626';
+}
 
+function getACWRColor(acwr) {
+  if (acwr === null) return '#94A3B8';
+  if (acwr < 0.8) return '#2563EB';
+  if (acwr <= 1.3) return '#16A34A';
+  if (acwr <= 1.5) return '#EA580C';
+  return '#DC2626';
+}
+
+function renderRankingHooper(players) {
+  const list = document.getElementById('rankingHooper');
+  const withData = players.filter(p => p.hasHooper).sort((a,b) => b.hooper - a.hooper);
+  if (withData.length === 0) { list.innerHTML = '<div class="empty">En attente des réponses...</div>'; return; }
   list.innerHTML = '';
   withData.forEach((p, i) => {
-    const color = getColor(p.score);
+    const color = getHooperColor(p.hooper);
     const rankClass = i===0?'r1':i===1?'r2':i===2?'r3':'';
-    const hStr = p.hooper ? `Hooper: ${p.hooper}/28` : 'Hooper: —';
-    const aStr = p.acwr ? `ACWR: ${p.acwr}` : '';
+    const pct = ((p.hooper - 4) / 24) * 100;
+    const statut = p.hooper <= 10 ? '🟢 Très frais' : p.hooper <= 14 ? '🟡 Frais' : p.hooper <= 18 ? '🟠 Fatigué' : '🔴 Très fatigué';
     const row = document.createElement('div');
     row.className = 'player-row';
     row.innerHTML = `
@@ -396,11 +423,51 @@ function renderRanking(players) {
       <div class="avatar" style="background:${p.color}">${getInitials(p.name)}</div>
       <div class="pinfo">
         <div class="pname">${p.name}</div>
-        <div class="pscores">${hStr}${aStr?' · '+aStr:''}</div>
+        <div class="pscores">${statut}</div>
       </div>
       <div class="bar-wrap">
-        <div class="bar"><div class="bar-fill" style="width:${p.score*10}%;background:${color}"></div></div>
-        <div class="score-num" style="color:${color}">${p.score}</div>
+        <div class="bar"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div>
+        <div class="score-num" style="color:${color}">${p.hooper}/28</div>
+      </div>`;
+    list.appendChild(row);
+  });
+}
+
+function renderRankingACWR(players) {
+  const list = document.getElementById('rankingACWR');
+  const withData = players.filter(p => p.hasRpe && p.acwr !== null).sort((a,b) => {
+    const distA = Math.abs(a.acwr - 1.05);
+    const distB = Math.abs(b.acwr - 1.05);
+    return distB - distA;
+  });
+  if (withData.length === 0) { list.innerHTML = '<div class="empty">En attente des données RPE...</div>'; return; }
+
+  // Légende ACWR
+  const legend = `<div style="display:flex;gap:6px;margin-bottom:12px;font-size:10px;">
+    <span style="background:rgba(37,99,235,0.1);color:#2563EB;padding:3px 8px;border-radius:4px;border:1px solid rgba(37,99,235,0.3)">🔵 &lt;0.8 Sous-charge</span>
+    <span style="background:rgba(22,163,74,0.1);color:#16A34A;padding:3px 8px;border-radius:4px;border:1px solid rgba(22,163,74,0.3)">🟢 0.8–1.3 Optimal</span>
+    <span style="background:rgba(234,88,12,0.1);color:#EA580C;padding:3px 8px;border-radius:4px;border:1px solid rgba(234,88,12,0.3)">🟠 1.3–1.5 Surcharge</span>
+    <span style="background:rgba(220,38,38,0.1);color:#DC2626;padding:3px 8px;border-radius:4px;border:1px solid rgba(220,38,38,0.3)">🔴 &gt;1.5 Critique</span>
+  </div>`;
+  list.innerHTML = legend;
+
+  withData.forEach((p, i) => {
+    const color = getACWRColor(p.acwr);
+    const rankClass = i===0?'r1':i===1?'r2':i===2?'r3':'';
+    const pct = Math.min(100, (p.acwr / 2) * 100);
+    const zone = p.acwr < 0.8 ? 'Sous-charge' : p.acwr <= 1.3 ? '✅ Optimal' : p.acwr <= 1.5 ? '⚠️ Surcharge' : '🚨 Critique';
+    const row = document.createElement('div');
+    row.className = 'player-row';
+    row.innerHTML = `
+      <div class="rank ${rankClass}">${i+1}</div>
+      <div class="avatar" style="background:${p.color}">${getInitials(p.name)}</div>
+      <div class="pinfo">
+        <div class="pname">${p.name}</div>
+        <div class="pscores">${zone} · Charge ${p.charge} UA</div>
+      </div>
+      <div class="bar-wrap">
+        <div class="bar"><div class="bar-fill" style="width:${pct}%;background:${color}"></div></div>
+        <div class="score-num" style="color:${color}">${p.acwr}</div>
       </div>`;
     list.appendChild(row);
   });
@@ -409,26 +476,23 @@ function renderRanking(players) {
 function renderAdapt(players, filter) {
   filter = filter || currentFilter;
   const list = document.getElementById('adaptList');
-  let data = players.filter(p => p.hasHooper).sort((a,b) => b.score - a.score);
-  if (filter === 'red') data = data.filter(p => p.score > 7);
-  else if (filter === 'watch') data = data.filter(p => p.score > 3 && p.score <= 7);
-  else if (filter === 'ok') data = data.filter(p => p.score <= 3);
-
+  let data = players.filter(p => p.hasHooper).sort((a,b) => b.hooper - a.hooper);
+  if (filter === 'red') data = data.filter(p => p.hooper > 18);
+  else if (filter === 'watch') data = data.filter(p => p.hooper > 10 && p.hooper <= 18);
+  else if (filter === 'ok') data = data.filter(p => p.hooper <= 10);
   if (data.length === 0) { list.innerHTML = '<div class="empty">Aucun joueur dans cette catégorie</div>'; return; }
-
   list.innerHTML = '';
   data.forEach(p => {
-    const zone = getZone(p.score);
-    const tag = getTag(p.score);
-    const hStr = p.hooper ? `Hooper ${p.hooper}/28` : '—';
-    const rStr = p.rpe ? ` · RPE ${p.rpe}/10` : '';
+    const zone = p.hooper <= 10 ? 'ok' : p.hooper <= 18 ? 'watch' : 'red';
+    const tag = p.hooper <= 10 ? 'Séance normale' : p.hooper <= 18 ? 'Surveiller' : 'Adapter séance';
+    const color = getHooperColor(p.hooper);
     const div = document.createElement('div');
     div.className = `adapt-row ${zone}`;
     div.innerHTML = `
-      <div class="adapt-score">${p.score}</div>
+      <div class="adapt-score" style="color:${color}">${p.hooper}</div>
       <div class="ainfo">
         <div class="aname">${p.name}</div>
-        <div class="adetail">${hStr}${rStr}</div>
+        <div class="adetail">Hooper ${p.hooper}/28${p.rpe ? ' · RPE '+p.rpe+'/10' : ''}</div>
       </div>
       <div class="atag">${tag}</div>`;
     list.appendChild(div);
