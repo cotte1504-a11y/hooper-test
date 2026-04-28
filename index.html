@@ -1546,6 +1546,12 @@ function submitForm() {
   const today = getLocalDate();
   const timestamp = new Date().toISOString();
 
+  let color, statut;
+  if (total <= 10) { color = 'var(--green)'; statut = 'Tres Frais'; }
+  else if (total <= 14) { color = 'var(--yellow)'; statut = 'Frais'; }
+  else if (total <= 18) { color = 'var(--orange)'; statut = 'Fatigue'; }
+  else { color = 'var(--red)'; statut = 'Tres Fatigue'; }
+
   const payload = {
     type: 'hooper',
     player: currentPlayer,
@@ -1567,7 +1573,7 @@ function submitForm() {
     stress: answers[2],
     douleurs: answers[3],
     indice_hooper: total,
-    statut: status
+    statut: statut
   });
   checkAndNotify();
 
@@ -1576,18 +1582,14 @@ function submitForm() {
   Object.assign(responses[today][currentPlayer], payload);
   try { localStorage.setItem('hooперResponses', JSON.stringify(responses)); } catch(e) {}
 
-  let color, status;
-  if (total <= 10) { color = 'var(--green)'; status = i18n[lang].statusVeryFresh; }
-  else if (total <= 14) { color = 'var(--yellow)'; status = i18n[lang].statusFresh; }
-  else if (total <= 18) { color = 'var(--orange)'; status = i18n[lang].statusTired; }
-  else { color = 'var(--red)'; status = i18n[lang].statusVeryTired; }
+  const statusLabel = total <= 10 ? i18n[lang].statusVeryFresh : total <= 14 ? i18n[lang].statusFresh : total <= 18 ? i18n[lang].statusTired : i18n[lang].statusVeryTired;
 
   document.getElementById('resultIcon').style.background = `rgba(${colorToRgb(color)}, 0.15)`;
   document.getElementById('resultTitle').textContent = i18n[lang].resultTitle;
   document.getElementById('resultSub').textContent = i18n[lang].resultSub;
   document.getElementById('finalScore').textContent = `${total}/28`;
   document.getElementById('finalScore').style.color = color;
-  document.getElementById('finalStatus').textContent = status;
+  document.getElementById('finalStatus').textContent = statusLabel;
   document.getElementById('finalStatus').style.color = color;
   document.getElementById('finalSleep').textContent = `${answers[0]}/7`;
   document.getElementById('finalFatigue').textContent = `${answers[1]}/7`;
