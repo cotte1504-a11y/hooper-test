@@ -1319,7 +1319,7 @@ async function handleStaffLogin() {
 // ── NOTIFY STAFF ──────────────────────────────────────────────────────────────
 async function checkAndNotify() {
   try {
-    await fetch(`${SUPABASE_URL}/functions/v1/notify-staff`, {
+    await fetch(`${SUPABASE_URL}/functions/v1/swift-endpoint`, {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Content-Type': 'application/json' }
     });
